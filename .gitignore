@@ -372,6 +372,11 @@ FodyWeavers.xsd
 .env.test.local
 .env.production.local
 
+# Local configuration files (contain sensitive data)
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Production.json
+
 # IDE files
 .vscode/
 .idea/

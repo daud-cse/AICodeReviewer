@@ -58,26 +58,48 @@ cd AICodeReviewer
 
 ### 2. Configure Settings
 
-Create or update `appsettings.json` with your configuration:
+**Option 1: Local Development File (Recommended for local development)**
+
+Create `appsettings.Development.json` with your actual API keys (this file is ignored by git):
 
 ```json
 {
   "GitHub": {
-    "Token": "your-github-personal-access-token",
+    "Token": "your-actual-github-token-here",
     "UserAgent": "AICodeReviewer/1.0"
   },
   "OpenAI": {
-    "ApiKey": "your-openai-api-key",
-    "Model": "gpt-4" // or "gpt-3.5-turbo"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
+    "ApiKey": "your-actual-openai-api-key-here",
+    "Model": "gpt-4o-mini"
   }
 }
 ```
+
+**Option 2: Environment Variables**
+
+Set these environment variables in your system or IDE:
+
+```bash
+# GitHub Configuration
+GITHUB_TOKEN=your-actual-github-token-here
+GITHUB_USER_AGENT=AICodeReviewer/1.0
+
+# OpenAI Configuration
+OPENAI_API_KEY=your-actual-openai-api-key-here
+OPENAI_MODEL=gpt-4o-mini
+```
+
+**Option 3: User Secrets (Recommended for production)**
+
+```bash
+dotnet user-secrets set "GitHub:Token" "your-actual-github-token-here"
+dotnet user-secrets set "OpenAI:ApiKey" "your-actual-openai-api-key-here"
+dotnet user-secrets set "OpenAI:Model" "gpt-4o-mini"
+```
+
+**Note**: The `appsettings.json` file contains placeholder values and should not contain real API keys. Use one of the options above for local development.
+
+**Template File**: Use `appsettings.template.json` as a reference for the required configuration structure.
 
 ### 3. Run the Application
 
@@ -230,6 +252,14 @@ For questions, issues, or contributions, please:
 1. Check existing issues in the repository
 2. Create a new issue with detailed information
 3. Contact the maintainers directly
+
+## 🔒 Security Notes
+
+- **Never commit API keys or tokens to version control**
+- The `appsettings.json` file contains only placeholder values
+- Use `appsettings.Development.json` (ignored by git) for local development
+- Consider using environment variables or user secrets for production deployments
+- Regularly rotate your GitHub personal access tokens and OpenAI API keys
 
 ---
 
